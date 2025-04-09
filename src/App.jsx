@@ -4,14 +4,22 @@ function App() {
 
   const [article, setArticle] = useState('')
 
-  const hadleSubmit = () => {
+  const handleSubmit = () => {
     alert("ARTICOLO INVIATO")
   }
 
   return (
     <>
       <List/>
-      
+      <form onSubmit={handleSubmit}>
+      <input 
+          type="text"
+          value={article}
+          onChange={event => { setArticle(event.target.value) }}
+      />
+      <button>Invia</button>
+
+      </form>
     </>
   )
 }
