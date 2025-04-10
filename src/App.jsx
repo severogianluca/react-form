@@ -24,27 +24,45 @@ function App() {
 
   return (
     <>
+    <div className='container'>
     <div>
         <h1>Lista alcolici</h1>
     </div>
-    <ul>
+    <div className='container-list'>
+    <ul class="list-group">
         {article.map((element,index) => (
-          <li key={index}>
+          <li  class="list-group-item d-flex justify-content-between align-items-center" key={index}>
             {element}
-          <button onClick={() => removeAlcolic(index)}>Elimina</button>
+
+          <button 
+          onClick={() => removeAlcolic(index)}
+          type="button" class="btn btn-danger">Elimina
+          </button>
           </li>
+
         ))}
     </ul> 
 
 
+
+    </div>
     <form onSubmit={addArticle}>
+      <div className="d-flex justify-content-between align-items-center mt-5 gap-3">
+    <div class="form-floating mt-5 dimensione">
     <input 
+        class="form-control"
+        id='list'
         type="text"
         value={newArticles}
         onChange={event => { setNewArticle(event.target.value) }}
     />
-    <button>Invia</button>
+     <label for="list">Aggiungi al carrello </label>
+    </div>
+    <button  type="button" class="btn btn-primary mt-3">Invia</button>
+    </div>
     </form>
+    </div>
+    
     </>
   )
 }
