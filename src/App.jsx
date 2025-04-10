@@ -3,15 +3,24 @@ import { useState } from 'react'
 function App() {
 
   const [article, setArticle] = useState(alcolici)
-  const [newArticle, setNewArticle] = useState('');
+  const [newArticles, setNewArticle] = useState('');
 
   const addArticle = event =>{
     event.preventDefault();
-    const newAlcolic = ([...article, newArticle])
-    setArticle(newAlcolic)
-    console.log(newAlcolic)
-    
+    const newAlcolic = ([...article, newArticles]);
+    setArticle(newAlcolic);
+    console.log(newAlcolic);
+    setNewArticle("");
   }
+
+  const removeAlcolic = (deleteAlcolic) => {
+    const newArticles = article.filter((element, index) => {
+      return deleteAlcolic !== index
+
+    })
+    setArticle(newArticles);
+  }
+
 
   return (
     <>
@@ -20,7 +29,10 @@ function App() {
     </div>
     <ul>
         {article.map((element,index) => (
-          <li key={index}>{element}</li>
+          <li key={index}>
+            {element}
+          <button onClick={() => removeAlcolic(index)}>Elimina</button>
+          </li>
         ))}
     </ul> 
 
@@ -28,7 +40,7 @@ function App() {
     <form onSubmit={addArticle}>
     <input 
         type="text"
-        value={newArticle}
+        value={newArticles}
         onChange={event => { setNewArticle(event.target.value) }}
     />
     <button>Invia</button>
